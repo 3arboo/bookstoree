@@ -1,0 +1,104 @@
+{% extends 'bookstore/main.html' %}
+{% block content %}
+
+<div class = "container">
+<h1 class="p-2"> <span class="badge badge-dark">Dashboard</span> </h1>
+
+<div class ="container pb-5">
+  <div class="row">
+    <div class="col-sm">
+      Total Pending : <span class="badge badge-primary">{{t_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      Pending : <span class="badge badge-success">{{p_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      Delivred  :  <span class="badge badge-danger">{{d_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      in progress :  <span class="badge badge-warning">{{in_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      out of order : <span class="badge badge-dark">{{out_order}}</span>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class ="row">
+  <div class = "col-lg-6" >
+  <div class="card " style="width: 30rem;">
+    <div class="card-body">
+      <h5 class="card-title">Coustemer</h5>
+      <h6 class="card-subtitle mb-2 text-muted"><a class="btn btn-success" href="#">Create</a>
+      </h6>
+       <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Show</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in costumer %}
+                  <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.age}}</td>
+                    <td> <a href="{% url 'customer' item.id %}"> Show </a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+    </div>
+  </div>
+</div>
+    <div class ="row">
+      <div class ="col-lg-6">
+    <div class="card" style="width: 30rem;">
+      <div class="card-body">
+        <h5 class="card-title">Order</h5>
+        <!--<h6 class="card-subtitle mb-2 text-muted"><button type="button" class="btn btn-success">Create</button>  -->
+        </h6>
+         <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">costumer </th>
+              <th scope="col"> book</th>
+              <th scope="col">status</th>
+              <th scope="col">Date_created</th>
+              <th scope="col">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order %}
+            <tr>
+              <td>{{item.costumer}}</td>
+              <td>{{item.book}}</td>
+              <td>{{item.stauts}}</td>
+              <td>{{item.Date_created}}</td>
+              <td>
+                <a href="{% url 'update' item.id %}"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'delete' item.id %}"><i class="fas fa-remove" style="color: #d11515;"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+      
+    </div>
+       
+  </div>
+ {% endblock %}

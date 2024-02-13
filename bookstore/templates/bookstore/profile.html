@@ -1,0 +1,63 @@
+{% extends "bookstore/main.html" %}
+{% block content %}
+
+<h1 class="p-5">Profile</h1>
+<hr>
+
+<div class ="container pb-5">
+  <div class="row">
+    <div class="col-sm">
+      Name : {{request.user.username}}
+
+    </div>
+    <div class="col-sm">
+      Total Pending : <span class="badge badge-primary">{{t_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      Pending : <span class="badge badge-success">{{p_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      Delivred  :  <span class="badge badge-danger">{{d_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      in progress :  <span class="badge badge-warning">{{in_order}}</span>
+
+    </div>
+    <div class="col-sm">
+      out of order : <span class="badge badge-dark">{{out_order}}</span>
+
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Book</th>
+      <th scope="col">Category</th>
+      <th scope="col">Date</th>
+      <th scope="col">status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order %}
+    <tr>
+      <td>{{item.book}}</td>
+      <td>{{item.book.category}}</td>
+      <td>{{item.Date_created}}</td>
+      <td>{{item.stauts}}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+</div>
+
+
+{% endblock %}
